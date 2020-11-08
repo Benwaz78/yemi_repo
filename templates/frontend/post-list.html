@@ -1,0 +1,57 @@
+{% extends 'frontend/base.html' %}
+<!DOCTYPE html>
+{% load static %}
+{% block title %}
+Post-list 
+{% endblock %}
+
+{% block content %}
+
+      <!-- END OF SITE MENU -->
+      <section id="sectionTitle">
+        <div class="pageTitle">
+          <h1>5 Post From Sports Category</h1>
+        </div>
+      </section>
+      <!-- END OF PAGE TITLE -->
+      <section id="content">
+        <div class="row">
+          <div class="col-sm-9" id="mainContent">
+            {% if pst %}
+              {% for p in pst %}
+                <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                    <div class="thumbnail">
+                      <img src="{{ p.pst_img.url }}">
+                    </div>
+                  </div>
+                  <div class="col-md-8 col-sm-8">
+                    <div class="blog-content">
+                      <p>
+                        Time:{{ p.created }}, 
+                        Category:
+                        {% for c in p.category.all %}
+                            <!-- This is the url pointing to post category -->
+                            <a href="{% url 'frontend:post_from_category' c.id %}">{{ c.cat_name }},</a>
+                        {% endfor %}.
+                        Posted By: <a href="#">{{ p.user.username }}</a>.
+                
+                      </p>
+                      <h2>{{ p.pst_title }}</h2>
+                      <p>
+                        {{ p.content|truncatewords:25 }}
+                      </p>
+                      <a href="{% url 'frontend:single_blog' p.id %}" class="btn btn-success">Readmore</a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+           
+            <!-- END OF BLOG ROW 1 -->
+            
+          </div>
+         {% include 'frontend/sidebar.html' %}
+        </div>
+      </section>
+   {% endblock %}

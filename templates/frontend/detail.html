@@ -1,0 +1,58 @@
+{% extends 'frontend/base.html' %}
+<!DOCTYPE html>
+{% load static %}
+{% block title %}
+Detail
+{% endblock %}   
+
+{% block content %}
+<!-- END OF SITE MENU -->
+      <section id="sectionTitle">
+        <div class="pageTitle">
+          <h1>{{ det.abt_title }}</h1>
+        </div>
+      </section>
+      <!-- END OF PAGE TITLE -->
+      <section id="content">
+        <div class="row">
+          <div class="col-sm-9 text-center" id="detailContent">
+            {% if det %}
+              <div class="contain-img">
+                <div class="img-div">
+                  <img src="{{ det.abt_image.url }}" class="img-responsive">
+                </div>
+              </div>
+              <div class="detail-content">
+                <h2>{{ det.abt_title }}</h2>
+                <p>
+                  {{ det.biography }}
+                </p>
+              </div>
+            {% endif %}
+             
+
+          </div>
+          <aside class="col-sm-3" id="sideBar">
+            <div class="widget">
+              <h3>Menu</h3>
+              <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="widget">
+              <h3>Branches</h3>
+              <ul class="nav">
+                <li><a href="#">Ikeja</a></li>
+                <li><a href="#">Festac</a></li>
+                <li><a href="#">Surulere</a></li>
+                <li><a href="#">Lekki</a></li>
+              </ul>
+            </div>
+          </aside>
+          <!-- END OF ASIDE CONTENT -->
+        </div>
+      </section>
+   {% endblock %}

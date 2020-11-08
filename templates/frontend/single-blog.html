@@ -1,0 +1,44 @@
+{% extends 'frontend/base.html' %}
+<!DOCTYPE html>
+{% load static %}
+{% block title %}
+Detail
+{% endblock %}
+
+{% block content %}
+<!-- END OF SITE MENU -->
+<section id="sectionTitle">
+  <div class="pageTitle">
+    <h1>{{ sin.pst_title }}</h1>
+  </div>
+</section>
+<!-- END OF PAGE TITLE -->
+<section id="content">
+  <div class="row">
+    {% if sin %}
+    <div class="col-sm-9 text-center" id="detailContent">
+      <div class="contain-img">
+        <div class="img-div" style="height: 250px">
+          <img src="{{ sin.pst_img.url }}" class="img-responsive">
+        </div>
+        <p>
+          Time:{{ sin.created|date:'M Y, d' }}, 
+          Category:<a href="sport.html">Sport.</a>.
+    
+        </p>
+      </div>
+      <div class="detail-content">
+        <h2>{{ sin.pst_title }}</h2>
+        <p>
+          {{ sin.content }}
+        </p>
+      </div>
+    
+    </div>
+    {% endif %}
+    
+    {% include 'frontend/sidebar.html' %}
+  </div>
+</section>
+</section>
+{% endblock %}
