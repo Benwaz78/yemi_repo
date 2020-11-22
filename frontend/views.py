@@ -1,6 +1,14 @@
 from django.shortcuts import render
 from frontend.models import *
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
+
+# SEND MAIL IMPORTS STARTS HERE
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+# SEND MAIL IMPORTS ENDS HERE
+
 # Create your views here.
 
 def index(request):
@@ -51,4 +59,31 @@ def services(request):
     return render(request, 'frontend/services.html')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phoneNo')
+        email = request.POST.get('email')
+        referer = request.POST.get('referer')
+        gender = request.POST.get('gender')
+        message = request.POST.get('message')
+        subject = 'Contact Us Form'
+        context = {
+            'name':name,
+            'phone':phone,
+            'email':email,
+            'referer':referer,
+            'gender':gender,
+            'message': message,
+        }
+        html_message = render_to_string('frontend/mail-template.html', context)
+        plain_message = strip_tags(html_message)
+        from_email = 'From <lappyng@gmail.com>'
+        email_send = mail.send_mail(subject, plain_message, from_email, [
+                    'uwazie.benedict@alabiansolutions.com', 'adeloyeadeyemi@gmail.com'], 
+                    html_message=html_message, fail_silently=True)
+        if email_send:
+            messages.success(request, 'Email is sent')
+        else:
+            messages.error(request, 'Email is not sent')
+ 
     return render(request, 'frontend/contact.html')

@@ -1,0 +1,16 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block title %}
+Add Category
+{% endblock %}
+
+{% block content %}
+<h2>Add Category</h2>
+<form method="post">
+    {{ cat }}
+    {% csrf_token %}
+    <input type="submit" value="Add Category" class="btn btn-primary">
+</form>
+
+{% endblock %}

@@ -19,19 +19,24 @@ Contact
           <div class="col-sm-9 text-center" id="mainContent">
             <div class="row">
               <div class="col-sm-12">
-                <form action="#" class="form" method="post" enctype="multipart/form-data">
+                {% if messages %}
+                  {% for mes in messages %}
+                      <div class="alert {{mes.tags }}">{{ mes }}</div>
+                  {% endfor %}
+                {% endif %}
+                <form  class="form" method="post">
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label for="labelUser">Name</label>
-                        <input type="text" name="name" id="labelUser" placeholder="Your Name" class="form-control">
+                        <label for="labelUser">Name*</label>
+                        <input type="text" required name="name" id="labelUser" placeholder="Your Name" class="form-control">
                       </div>
                     </div>
                     <!-- END OF NAME -->
                    <div class="col-sm-6">
                       <div class="form-group">
-                       <label for="labelPhone">Phone No</label>
-                       <input type="text" name="phoneNo" id="labelPhone" placeholder="Your Phone" class="form-control">
+                       <label for="labelPhone">Phone No*</label>
+                       <input type="text" required name="phoneNo" id="labelPhone" placeholder="Your Phone" class="form-control">
                      </div>
                    </div>
                    <!-- END OF PHONE -->
@@ -40,7 +45,7 @@ Contact
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="labelEmail">Email</label>
-                        <input type="text" name="subject" id="labelSubject" class="form-control" placeholder="Your Email">
+                        <input type="email" name="email" id="labelEmail" class="form-control" placeholder="Your Email">
                       </div>
                     </div>
                     <!-- END OF EMAIL -->
@@ -76,14 +81,14 @@ Contact
                   <!-- END OF GENDER -->
                  
                   <!-- FILE UPLOAD -->
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label>Upload File</label>
                         <input type="file" name="upload" class="form-control">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- END OF FILE UPLOAD -->
                   <div class="row">
                     <div class="col-sm-12">
@@ -94,6 +99,7 @@ Contact
                     </div>
                     <input type="submit" name="send" value="Send" class="btn btn-primary">
                   </div>
+                  {% csrf_token %}
                 </form>
               </div>
             </div>

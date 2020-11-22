@@ -1,0 +1,53 @@
+{% extends 'frontend/base.html' %}
+<!DOCTYPE html>
+{% load static %}
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+
+      <!-- END OF SITE MENU -->
+      <section id="sectionTitle">
+        <div class="pageTitle">
+          <h1>Login</h1>
+        </div>
+      </section>
+      <!-- END OF PAGE TITLE -->
+      <section id="content">
+        <div class="row">
+          <div class="col-sm-9 text-center" id="mainContent">
+            <div class="row">
+              <div class="col-sm-12">
+                {% if messages %}
+                  {% for mes in messages %}
+                      <div class="alert {{mes.tags }}">{{ mes }}</div>
+                  {% endfor %}
+                {% endif %}
+                <form  class="form" method="post">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="labelUser">Username*</label>
+                        <input type="text" required name="username" id="labelUser" placeholder="Your Username" class="form-control">
+                      </div>
+                    </div>
+                    <!-- END OF NAME -->
+                   <div class="col-sm-12">
+                      <div class="form-group">
+                       <label for="labelPass">Password*</label>
+                       <input type="password" required name="password" id="labelPass" placeholder="Your Password" class="form-control">
+                     </div>
+                   </div>
+                   <!-- END OF PHONE -->
+                  </div>
+                  <input type="submit" value="Login" class="btn btn-primary">
+                  {% csrf_token %}
+                </form>
+              </div>
+            </div>
+          </div>
+          {% include 'frontend/sidebar.html' %}
+        </div>
+      </section>
+    {% endblock %}
