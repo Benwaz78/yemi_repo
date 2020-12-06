@@ -14,13 +14,14 @@
     <hr class="bg-white">
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link active text-white" href="#">Change Password</a>
+            <a class="nav-link active text-white" href="{% url 'backend:pass_form' %}">Change Password</a>
+
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href="#">View Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="#">Edit Profile</a>
+            <a class="nav-link text-white" href="{% url 'backend:edit_profile_form' %}">Edit Profile</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href="{% url 'backend:confirm_logout' %}">Logout</a>

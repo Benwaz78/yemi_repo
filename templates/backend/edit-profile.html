@@ -1,0 +1,16 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block title %}
+{{ request.user.get_full_name }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ request.user.get_full_name }}</h2>
+
+<form method="post">
+    {% include 'backend/form-snippet.html' with form=edit %}
+    <input type="submit" value="Edit Profile" class="btn btn-primary">
+</form>
+
+{% endblock %}

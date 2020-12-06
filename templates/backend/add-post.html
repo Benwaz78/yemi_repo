@@ -8,8 +8,7 @@ Add Post
 {% block content %}
 <h2>Add Post</h2>
 <form method="post" enctype="multipart/form-data">
-    {{ post.as_p }}
-    {% csrf_token %}
+    {% include 'backend/form-snippet.html' with form=post %}
     <input type="submit" value="Add Post" class="btn btn-primary">
 </form>
 

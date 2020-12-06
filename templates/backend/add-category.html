@@ -8,8 +8,7 @@ Add Category
 {% block content %}
 <h2>Add Category</h2>
 <form method="post">
-    {{ cat }}
-    {% csrf_token %}
+    {% include 'backend/form-snippet.html' with form=cat %}
     <input type="submit" value="Add Category" class="btn btn-primary">
 </form>
 

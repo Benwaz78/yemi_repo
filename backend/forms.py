@@ -3,6 +3,8 @@ from frontend.models import *
 from django.core import validators
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 
 class Register(UserCreationForm):
@@ -97,3 +99,27 @@ class PostForm(forms.ModelForm):
     class Meta():
         exclude = ['created', 'user']
         model = Post
+
+class ChangePassword(PasswordChangeForm):
+    old_password = forms.CharField(label='Your Old Password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Old Password'}))
+    new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
+    new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
+    botcatcher = forms.CharField(required=False, widget=forms.HiddenInput, validators=[
+                                 validators.MaxLengthValidator(0)])
+
+
+class EditProfileForm(forms.ModelForm):
+    username = forms.CharField(label='Username', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    first_name = forms.CharField(label='Firstname', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter Firstname'}))
+    last_name = forms.CharField(label='Lastname', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter Lastname'}))
+    email = forms.CharField(label='Email', widget=forms.EmailInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter Email', 'disabled':'disabled'}))
+    class Meta():
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')

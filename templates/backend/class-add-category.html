@@ -1,0 +1,23 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block title %}
+Add Category
+{% endblock %}
+
+{% block content %}
+{% if not form.instance.pk %}
+<h2>Add Category</h2>
+{% else %}
+<h2>Edit Category</h2>
+{% endif %}
+<form method="post">
+    {% include 'backend/form-snippet.html' with form=form %}
+    {% if not form.instance.pk %}
+        <input type="submit" value="Add Category" class="btn btn-primary">
+    {% else  %}
+        <input type="submit" value="Edit Category" class="btn btn-primary">
+    {% endif %}
+</form>
+
+{% endblock %}
