@@ -44,7 +44,32 @@ class AboutModel(models.Model):
     class Meta():
         verbose_name_plural = 'About Us'
 
-    
 
+class ContactModel(models.Model):
+    CHOOSE = 'Choose'
+    FACEBOOK = 'FB'
+    TWITTER = 'TW'
+    NAIRALAND = 'NL'
+    LINKEDIN = 'LN'
+    REFERER_FIELD = [
+        (CHOOSE, 'Please Choose'),
+        (FACEBOOK, 'Facebook'),
+        (TWITTER, 'Twitter'),
+        (NAIRALAND, 'Nairaland'),
+        (LINKEDIN, 'Linkedin')
+    ]
 
+    MALE = 'ML'
+    FEMALE = 'FM'
+    GENDER_FIELD = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+    ]
+    name = models.CharField(max_length=150)
+    phone_no = models.CharField(max_length=150)
+    email = models.EmailField()
+    referer = models.CharField(max_length=10, default=CHOOSE, blank=True)
+    gender = models.CharField(max_length=10, blank=True)
 
+    def __str__(self):
+        return self.name

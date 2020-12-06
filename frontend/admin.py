@@ -5,4 +5,5 @@ from frontend.models import *
 admin.site.site_header = 'Yemi Django'
 admin.site.register(Category)
 admin.site.register(Post)
+admin.site.register(ContactModel)
 admin.site.register(AboutModel)

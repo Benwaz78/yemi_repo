@@ -80,7 +80,9 @@ def contact(request):
         from_email = 'From <lappyng@gmail.com>'
         email_send = mail.send_mail(subject, plain_message, from_email, [
                     'uwazie.benedict@alabiansolutions.com', 'adeloyeadeyemi@gmail.com'], 
-                    html_message=html_message, fail_silently=True)
+                    html_message=html_message)
+        save_contact = ContactModel(name=name, phone_no=phone, email=email, referer=referer, gender=gender)
+        save_contact.save()
         if email_send:
             messages.success(request, 'Email is sent')
         else:
